@@ -1,0 +1,27 @@
+#!/bin/sh
+# Uses sh because Git for Windows can resolve #!/bin/bash to WSL's bash.
+# Blocks the commit if gitleaks finds a secret in the staged changes.
+# Fails closed: if gitleaks cannot run, the commit is blocked too.
+
+gitleaks_bin="gitleaks"
+
+# GUI apps such as GitHub Desktop may start without the winget folder on PATH.
+if ! command -v "$gitleaks_bin" >/dev/null 2>&1; then
+  for candidate in "${LOCALAPPDATA//\\//}"/Microsoft/WinGet/Packages/Gitleaks.Gitleaks_*/gitleaks.exe; do
+    if [ -x "$candidate" ]; then
+      gitleaks_bin="$candidate"
+      break
+    fi
+  done
+fi
+
+if ! command -v "$gitleaks_bin" >/dev/null 2>&1; then
+  echo "pre-commit: gitleaks not found, commit blocked." >&2
+  echo "Install it with: winget install --id Gitleaks.Gitleaks -e" >&2
+  exit 1
+fi
+
+if ! "$gitleaks_bin" git --pre-commit --staged --redact --verbose --no-banner; then
+  echo "pre-commit: gitleaks reported a secret or failed, commit blocked." >&2
+  exit 1
+fi

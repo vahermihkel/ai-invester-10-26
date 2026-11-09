@@ -10,7 +10,7 @@ Built by code from [metrics](metrics.md), [anomaly flags](cleaning-and-anomalies
   "environment": "demo",
   "macro": { "vix": 17.1, "vixPctl10y": 0.42, "hyOas": 3.21, "hyOasChange20d": 0.05, "spxVsMa200": 1.06 },
   "candidates": [
-    { "symbol": "JNJ", "price": 152.4, "peTtm": 14.2, "pe5yMedian": 16.8, "vol60d": 0.18, "daysToEarnings": 21 }
+    { "symbol": "JNJ", "price": 150.4, "peTtm": 14.2, "pe5yMedian": 16.8, "vol60d": 0.18, "daysToEarnings": 21 }
   ],
   "anomalies": [
     { "metric": "VIX", "value": 24.9, "change1d": 0.38, "severity": "HIGH", "type": "SPIKE",

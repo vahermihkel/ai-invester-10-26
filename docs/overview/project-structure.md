@@ -49,5 +49,8 @@ ai-invester/
 │   ├── components/
 │   ├── lib/backend.ts              # server-side client to Spring (adds internal token)
 │   └── middleware.ts               # Host / Origin checks, security headers
+├── .claude/                        # reviewer and checker agents, review gate hook
+├── .githooks/pre-commit            # gitleaks secret scan
+├── .gitleaksignore                 # confirmed false positives only
 └── .gitignore
 ```

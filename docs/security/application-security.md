@@ -27,8 +27,11 @@ Prevents access from other devices, other programs and malicious websites.
 
 - `application.yml` contains only secret **references**.
 - Secrets masked in logs, error messages and Spring Actuator (Actuator endpoints disabled or limited to `health`).
-- `.gitignore`: `.env*`, `*.key`, `secrets/`, `application-local.yml`.
-- **`gitleaks` pre-commit hook** + GitHub secret scanning.
+- `.gitignore`: `.env*`, `*.key`, `*.pem`, `*.p12`, `*.pfx`, `*.jks`, `secrets/`, `application-local.*`, `backups/`, `*.dump`, `logs/`, `*.log`, `*.hprof`, `hs_err_pid*`.
+- **`gitleaks` pre-commit hook** (`.githooks/pre-commit`) + GitHub secret scanning. Scans staged changes and blocks the commit if it finds a secret or cannot run (fail closed). Applies to terminal and GitHub Desktop commits.
+- Cloning does not activate hooks. After every new clone run `git config core.hooksPath .githooks`.
+- Confirmed false positives go in `.gitleaksignore` by exact fingerprint, never by disabling a rule.
+- If a real secret is ever committed, revoke and replace it first. Removing it from git does not make it safe again.
 
 ## Code privacy
 - **Private** GitHub repository; GitHub account protected with 2FA.

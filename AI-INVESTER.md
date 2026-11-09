@@ -18,6 +18,7 @@
 - [Security Principles](docs/security/principles.md) — the core rules
 - [Application Security](docs/security/application-security.md) — localhost hardening, credentials, code privacy, database, tests
 - [Safety Limits & Kill Switch](docs/security/safety-limits.md) — hard caps on every order
+- [AI Code Review](docs/security/code-review.md) — independent reviewer and checker on every code change
 
 ### Brokers
 - [Broker Integration](docs/brokers/broker-integration.md) — pluggable adapters, eToro, IBKR, DEMO vs LIVE
